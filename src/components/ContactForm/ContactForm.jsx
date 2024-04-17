@@ -2,8 +2,16 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { nanoid } from "nanoid";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
+import { useDispatch } from "react-redux";
+import { addNewContact } from "../../redux/contactsSlice";
 
-const ContactForm = ({ addContact }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
+  const addContact = (contact) => {
+    dispatch(addNewContact(contact));
+  };
+
   const addSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, `Field must be more then 3!`)
@@ -20,8 +28,8 @@ const ContactForm = ({ addContact }) => {
     number: "",
   };
 
-  const handleSubmit = (data, options) => {
-    addContact({ ...data, id: nanoid() });
+  const handleSubmit = (values, actions) => {
+    dispatch(addContact(values));
     options.resetForm();
   };
   return (
