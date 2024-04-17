@@ -28,8 +28,8 @@ const ContactForm = () => {
     number: "",
   };
 
-  const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+  const handleSubmit = (data, options) => {
+    addContact({ ...data, id: nanoid() });
     options.resetForm();
   };
   return (
@@ -46,7 +46,7 @@ const ContactForm = () => {
         </label>
         <label className={css.label}>
           Number
-          <Field className={css.field} type="text" name="number" />
+          <Field className={css.field} type="number" name="number" />
           <ErrorMessage className={css.error} component="span" name="number" />
         </label>
         <button className={css.btn} type="submit">

@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import css from "./Contact.module.css";
 import { deleteContact } from "../../redux/contactsSlice";
-const Contact = ({ item }) => {
+
+const Contact = ({ contact }) => {
   const dispatch = useDispatch();
-  const { id, name, number } = item;
+  const { id, name, number } = contact;
+
   return (
     <li className={css.item}>
       <h2> {name}</h2>
