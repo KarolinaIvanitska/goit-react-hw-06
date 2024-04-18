@@ -22,13 +22,13 @@ const ContactList = () => {
     );
   }
 
-  if (!contacts.length) {
+  if (!filteredContacts.length) {
     return "No contacts to show...";
   }
   return (
     <>
       <ul className={css.ul}>
-        {contacts.map((contact) => (
+        {filteredContacts.map((contact) => (
           <Contact key={contact.id} contact={contact} onDelete={onDelete} />
         ))}
       </ul>
